@@ -1,0 +1,27 @@
+<h2></h2>
+<div class=" mt-5">
+
+  <div class="col-md-6 col-md-offset-2 m-auto login-form">
+    <h1>Login </h1>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="userName">User Name:</label>
+        <input type="email" class="form-control" formControlName="userName" id="userName">
+        <div *ngIf="submitted && loginForm.controls.userName.errors" class="error">
+          <div *ngIf="loginForm.controls.userName.errors.required">User Name is required</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="pwd">Password:</label>
+        <input type="password" class="form-control" formControlName="password" id="pwd">
+        <div *ngIf="submitted && loginForm.controls.password.errors" class="error">
+          <div *ngIf="loginForm.controls.password.errors.required">Password is required</div>
+        </div>
+      </div>
+      <button class="btn btn-default">Login</button>
+      <div *ngIf="invalidLogin" class="error">
+        <div>Invalid credentials.</div>
+      </div>
+    </form>
+  </div>
+</div>

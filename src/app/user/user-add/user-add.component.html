@@ -1,0 +1,115 @@
+<div class="modal show" id="myModal" role="dialog" style="display: block">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Add User</h4>
+        <button
+          (click)="cancel()"
+          type="button"
+          class="close"
+          data-dismiss="modal"
+        >
+          &times;
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="userForm" (ngSubmit)="onSubmit(userForm)">
+          <div class="form-group">
+            <label for="email">Email address:</label>
+            <input
+              type="email"
+              formControlName="email"
+              placeholder="Email"
+              name="email"
+              class="form-control"
+              id="email"
+            />
+            <div
+              *ngIf="submitted && userForm.controls.email.errors"
+              class="error"
+            >
+              <div *ngIf="userForm.controls.email.errors.required">
+                Email is required
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="userName">User Name:</label>
+            <input
+              formControlName="userName"
+              placeholder="User Name"
+              name="userName"
+              class="form-control"
+              id="userName"
+            />
+            <div
+              *ngIf="submitted && userForm.controls.userName.errors"
+              class="error"
+            >
+              <div *ngIf="userForm.controls.userName.errors.required">
+                UserName is required
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="department">Department:</label>
+            <select
+              id="department"
+              formControlName="department"
+              class="form-control"
+            >
+              <option *ngFor="let value of departmentList" [value]="value.id">
+                {{ value.name }}
+              </option>
+            </select>
+            <div
+              *ngIf="submitted && userForm.controls.department.errors"
+              class="error"
+            >
+              <div *ngIf="userForm.controls.department.errors.required">
+                Department is required
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="phone">Phone:</label>
+            <input
+              id="dob"
+              type="date"
+              formControlName="dob"
+              name="dob"
+              placeholder="Dob"
+              class="form-control"
+            />
+            <div
+              *ngIf="submitted && userForm.controls.dob.errors"
+              class="error"
+            >
+              <div *ngIf="userForm.controls.dob.errors.required">
+                Dob is required
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button (click)="onSubmit(userForm)" class="btn btn-success">
+          Add
+        </button>
+        <button
+          (click)="cancel()"
+          type="button"
+          class="btn btn-default"
+          data-dismiss="modal"
+        >
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal-backdrop fade show"></div>
